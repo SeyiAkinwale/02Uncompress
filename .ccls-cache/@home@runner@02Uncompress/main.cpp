@@ -3,6 +3,7 @@ using namespace std;
 
 void uncompress(string s)
 {
+  string result = "";
   string numbers = "0123456789";
 
   int i=0; //start of num seq
@@ -11,15 +12,21 @@ void uncompress(string s)
   {
     //check if char @ j is null position
     if (numbers.find(s[j]) != string::npos)
+    {j++;}
+    else
     {
-      j++;
-    }else{
-      stoi(s.substr(i,j));
+      int count = stoi(s.substr(i,j));
+      for(int n=0; n< count; n++)
+      {result +=s[j];}
+
+      j++; //move j to next num
+      i=j; //move i to next num
     }
+    
   }
   return s;
 }
 
 int main() {
-  std::cout << "Hello World!\n";
+  uncompress("3n12e2z");
 }
